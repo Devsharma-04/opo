@@ -1,9 +1,10 @@
 from pathlib import Path
+import os
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-5@^zpy(to#im$hv9j!@1=r^*l582r1hl2wsus5t!3cz05kmo%+'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = True
 
@@ -64,9 +65,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # 🗄️ NEON POSTGRES DATABASE
 # =========================
 DATABASES = {
-    'default': dj_database_url.parse(
-        "postgresql://neondb_owner:npg_rqURZkh5JK9j@ep-divine-smoke-aoe1zaas-pooler.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
-    )
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 # =========================
